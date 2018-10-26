@@ -13,13 +13,12 @@ import {
   DropdownMenu,
   DropdownItem 
 } from 'reactstrap';
-import {Link} from 'react-router-dom';
 
 import axios from 'axios';
 
 
 const url = 'http://localhost:5000/getComp';
-const token = 'c73d1cb1e85c4d39b6e710c54b4a5266';
+
 class AppNavbar extends Component {
   constructor(){
     super();

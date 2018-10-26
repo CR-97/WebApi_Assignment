@@ -5,31 +5,35 @@ import {
   CardTitle, CardSubtitle, Button, CardFooter
 } from 'reactstrap';
 
-export default class HomeItems extends Component{
-  constructor(props) {
-    super(props);
+const HomeItems = props =>{
+
+  function handleSubmit(){
+    props.onClick({
+      title: props.item.title,
+      url: props.item.url,
+      image: props.item.urlToImage,
+      desc: props.item.description,
+      content: props.item.content
+    });
   }
-  render(){
-    return(
-      <div>
-            <Card id="size">
-              <CardImg top width="100%" src={this.props.item.image} alt="Card image cap" />
-              <CardBody>
-                <CardTitle>{this.props.item.title}</CardTitle>
-                <CardSubtitle id="subtitle">{this.props.item.description}</CardSubtitle>
-                <CardText>{this.props.item.content}</CardText>
-              </CardBody>
-              <CardFooter>
-              <Button id="save_btn">Save</Button>
-                <Button id="read-btn" href={this.props.item.url} target="_blank">Read More</Button>
-              </CardFooter>
-              </Card>
-              <br/>
-            </div>
-            
-    );
-  }
-}
+
+  return(
+    <Card id="size">
+      <CardImg top width="100%" src={props.item.urlToImage} alt="Card image cap" />
+    <CardBody>
+      <CardTitle>{props.item.title}</CardTitle>
+      <CardSubtitle id="subtitle">{props.item.description}</CardSubtitle>
+      <CardText>{props.item.content}</CardText>
+    </CardBody>
+    <CardFooter>
+      <Button id="save_btn"onClick={handleSubmit}>Save</Button>
+      <Button id="read-btn" href={props.item.url} target="_blank">Read More</Button>
+    </CardFooter>
+    </Card>
+  );
+};
+
+export default HomeItems;
 
 
 
