@@ -34,19 +34,18 @@ app.get('/get', (req,res)=>{
     res.status(200).json(data);
   })
   .catch(err=>{
-    res.status(404).json(error);
+    res.status(404).json(err);
   })
 })
 
-app.post('/post', (req, res) => {
-  const name = req.body.users;
-  const value = req.body.url;
-  // const array =[{
-  //     name: name,
-  //     value : value
-  // }];
-  console.log(req.body);
-  Data.insertMany(name)
+app.post('/get', (req, res) => {
+  
+  console.log(req.body.title);
+  const array =[{
+    name :req.body.title,
+    value: req.body.url
+  }];
+  Data.insertMany(array)
   .then(res =>{
     console.log(res);
     res.send(res);
