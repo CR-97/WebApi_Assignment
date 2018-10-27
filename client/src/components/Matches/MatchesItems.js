@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import {
   Container, Row, Col,
   Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button, CardFooter
+  CardTitle, CardSubtitle, CardFooter
 } from 'reactstrap';
-
+import {
+  Fa,CardImage,Button
+} from 'mdbreact';
 const MatchesItems = props =>{
 
   // function handleSubmit(){
@@ -12,24 +14,19 @@ const MatchesItems = props =>{
   //     title: props.item.title,
   //   });
   // }
-
-  return(
-    <Col sm="4">
-    <Card id="size">
-      <CardImg top width="100%" src={props.item.imageUrl} alt={props.item.title} />
-    <CardBody>
-      <CardTitle>{props.item.title}</CardTitle>
-      <CardSubtitle id="subtitle">{props.item.desc}</CardSubtitle>
-      <CardText>{props.item.content}</CardText>
-    </CardBody>
-    <CardFooter>
-      <Button id="save_btn">Delete</Button>
-      <Button id="read-btn" href={props.item.url} target="_blank">Read More</Button>
-    </CardFooter>
-    </Card>
-    <br/>
-  </Col>
-  );
+  
+    return(
+      <div>
+      <Card>
+          <CardBody>
+            <CardTitle>{props.item.competition.name}</CardTitle>
+            <CardSubtitle>{props.item.homeTeam.name} vs {props.item.awayTeam.name}</CardSubtitle>
+            <CardText>Score : {props.item.score.fullTime.homeTeam} - {props.item.score.fullTime.awayTeam}</CardText>
+          </CardBody>
+        </Card>
+        <br/>
+      </div>
+    );
 };
 
 export default MatchesItems;

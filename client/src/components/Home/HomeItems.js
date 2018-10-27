@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import {
   Container, Row, Col,
   Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button, CardFooter
+  CardTitle, CardSubtitle, CardFooter
 } from 'reactstrap';
+import {
+  Fa,CardImage,Button
+} from 'mdbreact';
+
 
 const HomeItems = props =>{
 
@@ -26,8 +30,8 @@ const HomeItems = props =>{
       <CardText>{props.item.content}</CardText>
     </CardBody>
     <CardFooter>
-      <Button id="save_btn"onClick={handleSubmit}>Save</Button>
-      <Button id="read-btn" href={props.item.url} target="_blank">Read More</Button>
+      <Button className="btn-circle btn-xl float-left" id="btn-save"  onClick={handleSubmit}><Fa className="fa-lg" icon="plus"/></Button>
+          <a href={props.item.url} target="_blank" className="black-text d-flex justify-content-end" id="read-more"><h5>Read more <Fa icon="angle-double-right"></Fa></h5></a>
     </CardFooter>
     </Card>
     <br/>

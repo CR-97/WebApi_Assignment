@@ -8,7 +8,6 @@ import {
   Container, Row, Col
 } from 'reactstrap';
 
-import './Home.css'
 
 const Home = props =>{
   const news = props.item;

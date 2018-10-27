@@ -53,9 +53,7 @@ class AppNavbar extends Component {
 
   handleNavigate = (id) =>{
     console.log(id);
-    axios.get("http://localhost:5000/getC", {
-      id:id
-    });
+    axios.post("http://localhost:5000/getCompetition",id);
   }
 
   
@@ -91,7 +89,7 @@ class AppNavbar extends Component {
                 </DropdownMenu>
               </UncontrolledDropdown>
                 <NavItem>
-                  <NavLink href="#">
+                  <NavLink href="/matches" to="/matches">
                     Matches
                   </NavLink>
                 </NavItem>

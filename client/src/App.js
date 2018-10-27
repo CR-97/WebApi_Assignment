@@ -78,7 +78,7 @@ class App extends Component {
       .get("http://localhost:5000/getMatches") 
         .then(response =>{
           this.setState({
-            matches:response.data
+            matches:response.data.matches
           });
         })
         .catch(error => {
@@ -114,7 +114,9 @@ class App extends Component {
           <AppNavBar />
          
         <Route exact path="/" render={() =><Home item={this.state.news} item2={this.state.news2} item3={this.state.news3} onClick={this.handleSubmit}/>}/>
-        <Route path="/matches" render={() =><Match item={this.state.matches} />} />
+        
+        <Route path="/matches" render={() =><Match item={this.state.matches}/>} />
+
         <Route path="/saved_items" render={() =><Saved item={this.state.saved} onClick={this.handleDelete}/>} />
         <AppFooter/>
       </div>

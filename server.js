@@ -13,9 +13,8 @@ const Comp = require('./schema/schema');
 
 //Body-Parser + Cors
 app.use(cors());
-app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
-
+app.use(bodyParser.urlencoded({extended:true}));
 
 //Connect to mongoose db
 mongoose.connect(db,{ useNewUrlParser: true })
@@ -27,7 +26,7 @@ mongoose.connect(db,{ useNewUrlParser: true })
 });
 
 
-// GET MongoDB data 
+/*----------- MongoDB Data Get -------------*/
 app.get('/getComp',(req,res)=>{
   Comp.find()
   .then(comp=>{
@@ -84,7 +83,7 @@ app.post('/getSaveNews/delete', (req, res) => {
 
 
 
-//News Api Get
+/*----------- News Api Get -------------*/
 const apiKey = '8a331e64c829479b91bbb3c54b0b4d9f';
 const url = `https://newsapi.org/v2/top-headlines?sources=four-four-two&apiKey=${apiKey}`;
 const url2 = `https://newsapi.org/v2/top-headlines?sources=football-italia&apiKey=${apiKey}`;
@@ -137,6 +136,7 @@ app.get('/getMatches', (req, res) => {
   })
   .then((response) => {
       res.send(response.data);
+      res.status(200).json(response);
   })
   .catch((error) => {
       console.log(error);
@@ -144,7 +144,7 @@ app.get('/getMatches', (req, res) => {
   })
 });
 
-app.get('/getCompetition', (req, res) => {
+app.post('/getCompetition', (req, res) => {
   const id = req.body.id;
   console.log(id);
   const comp = `http://api.football-data.org/v2/competitions/2019/teams`;
@@ -152,6 +152,7 @@ app.get('/getCompetition', (req, res) => {
     headers: { 'X-Auth-Token': token }
   })
   .then((response) => {
+      console.log(`http://api.football-data.org/v2/competitions/${id}/teams`);
       res.send(response.data);
       res.status(200).json(response);
   })

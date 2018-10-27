@@ -6,7 +6,6 @@ import {
 } from 'reactstrap';
 
 
-
 const Matches = props =>{
   const match = props.item;
   let res;
@@ -17,17 +16,13 @@ const Matches = props =>{
     );
   }
 
- 
-
   return(
     <div>
        <Container>
         <h1>Today Matches</h1>
       </Container>
       <Container>
-        <Row>
         {res}
-        </Row>
       </Container>
     </div>
   );
