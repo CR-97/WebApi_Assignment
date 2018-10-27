@@ -13,7 +13,7 @@ import {
   DropdownMenu,
   DropdownItem 
 } from 'reactstrap';
-
+import NavContent from './NavItems';
 import axios from 'axios';
 
 
@@ -23,30 +23,22 @@ class AppNavbar extends Component {
   constructor(){
     super();
     this.state ={
-      main:[]
+      main:[],
+      id: ""
     };
   }
 
   componentDidMount() {
     axios
     .get(url) 
-      .then(response => 
-        response.data.map(main =>({
-          id: `${main.comp_id}`,
-          name: `${main.comp_name}`,
-          area: `${main.comp_area}`
-        }))
-      )
-      .then(main=>{
+      .then(response =>{
         this.setState({
-          main
+          main:response.data
         });
       })
-      .catch(error => 
-        this.setState({
-          error
-        }) 
-      );
+      .catch(error => {
+        alert(error);
+      });
   }
 
   state = {
@@ -59,15 +51,20 @@ class AppNavbar extends Component {
     });
   };
 
-  render() {
-    const comp = this.state.main.map(item =>{
-      return(
-        <DropdownItem key={item.id} href="/">
-            {item.name}({item.area})
-        </DropdownItem>
-      )
-    })
+  handleNavigate = (id) =>{
+    console.log(id);
+    axios.get("http://localhost:5000/getC", {
+      id:id
+    });
+  }
 
+  
+  render() {
+    const comp = this.state.main;
+    let item;
+    item = comp.map((item) =>
+      <NavContent item={item} onClick={this.handleNavigate}/> 
+    );
 
     return (
       <div>
@@ -87,25 +84,20 @@ class AppNavbar extends Component {
                   Competitions
                 </DropdownToggle>
                 <DropdownMenu right>
-                  {comp}
+                  {item}
                   {/* <DropdownItem >
                     OPtion
                 </DropdownItem> */}
                 </DropdownMenu>
               </UncontrolledDropdown>
                 <NavItem>
-                  <NavLink href="#" to="#">
-                    Team
-                  </NavLink>
-                </NavItem>
-                <NavItem>
                   <NavLink href="#">
                     Matches
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="#">
-                    Favourites
+                  <NavLink href="/saved_items" to="/saved_items">
+                    Saved
                   </NavLink>
                 </NavItem>
               </Nav>
